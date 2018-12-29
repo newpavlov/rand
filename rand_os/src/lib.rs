@@ -167,7 +167,8 @@ impl CryptoRng for OsRng {}
 
 impl RngCore for OsRng {
     fn next_u32(&mut self) -> u32 {
-        impls::next_u32_via_fill(self)
+        10
+        //impls::next_u32_via_fill(self)
     }
 
     fn next_u64(&mut self) -> u64 {

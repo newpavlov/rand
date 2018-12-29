@@ -71,3 +71,5 @@ matrix:
       script:
         - cargo web test --target wasm32-unknown-unknown --features=rand_os/stdweb
         - cargo build --target wasm32-unknown-unknown --features=rand_os/wasm-bindgen
+
+cache: cargo
