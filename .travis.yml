@@ -69,7 +69,6 @@ matrix:
       addons:
         chrome: stable
       script:
-        - cargo web test --target wasm32-unknown-unknown --features=rand_os/stdweb
-        - cargo build --target wasm32-unknown-unknown --features=rand_os/wasm-bindgen
+        - cd rand_os && cargo web test --target wasm32-unknown-unknown --features=stdweb
 
 cache: cargo
