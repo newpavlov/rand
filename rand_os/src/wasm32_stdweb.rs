@@ -14,6 +14,7 @@ enum OsRngMethod {
 pub struct OsRng(OsRngMethod);
 
 impl OsRngImpl for OsRng {
+    #[inline(never)]
     fn new() -> Result<OsRng, Error> {
         let result = js! {
             try {
@@ -40,14 +41,14 @@ impl OsRngImpl for OsRng {
 
             if ty == 1 { Ok(OsRng(OsRngMethod::Browser)) }
             else if ty == 2 { Ok(OsRng(OsRngMethod::Node)) }
-            else { panic!("unexpected ty value: {:?}", ty) }
+            else { unreachable!() }
         } else {
             let err: WebError = js!{ return @{ result }.error }.try_into().unwrap();
             Err(Error::with_cause(ErrorKind::Unavailable, "WASM Error", err))
         }
     }
 
-
+    #[inline(never)]
     fn fill_chunk(&mut self, dest: &mut [u8]) -> Result<(), Error> {
         assert_eq!(mem::size_of::<usize>(), 4);
 
